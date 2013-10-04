@@ -3,3 +3,9 @@ william:
   last_name: "Schultz"
   email: "williamtschultz@me.com"
   profile_name: "Wildcat"
+
+jim: 
+  first_name: "Jim"
+  last_name: "Hoshkins"
+  email: "jim@teamtreehouse.com"
+  profile_name: "jimhoshkins"
