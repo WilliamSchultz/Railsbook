@@ -19,3 +19,7 @@ padding-top: 40px;
 .alert {
 	margin-top: 10px; 
 }
+
+.navbar-fixed-top{ 
+	background-color: black; 
+}

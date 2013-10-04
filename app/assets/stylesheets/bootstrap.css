@@ -4420,6 +4420,7 @@ input[type="submit"].btn.btn-mini {
   font-weight: 200;
   color: #777777;
   text-shadow: 0 1px 0 #ffffff;
+
 }
 
 .navbar .brand:hover,
@@ -4546,6 +4547,7 @@ input[type="submit"].btn.btn-mini {
   left: 0;
   z-index: 1030;
   margin-bottom: 0;
+
 }
 
 .navbar-fixed-top .navbar-inner,
@@ -4581,6 +4583,7 @@ input[type="submit"].btn.btn-mini {
   -webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
      -moz-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
           box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+          
 }
 
 .navbar-fixed-bottom {
