@@ -1,16 +1,23 @@
-<div class="page-header"> 
-	<h1>Viewing Friendship</h1>
+<div class="page-header">
+  <h1>Viewing Friendship</h1>
 </div>
 
-<% if @user_friendship.requested? %>
-	<h3>Do you really want to be friends with <%= @friend.first_name %>?</h3> 
-	<% end %> 
+<div>
 
-<div class="form-actions"> 
-	<% if @user_friendship.requested? %> 
-		<%= form_for @user_friendship, url: accept_user_friendship_path(@user_friendship), method: :put do |form| %> 
-		<%= submit_tag "Accept Friendship", class: 'btn btn-primary' %> 
-		<% end %> 
-		<% end %> 
+  <h3><%= @user_friendship.sub_message %></h3> 
 
-</div> 
+
+    <div class="form-actions">
+      <% if @user_friendship.requested? %>
+        <%= form_for @user_friendship, url: accept_user_friendship_path(@user_friendship), method: :put do |form| %>
+          <%= submit_tag "Accept Friendship", class: 'btn btn-primary' %>
+        <% end %>
+      <% end %>
+
+      <% if @user_friendship.accepted? %>
+        <%= form_for @user_friendship, url: user_friendship_path(@user_friendship), method: :delete do |form| %>
+          <%= submit_tag "Delete Friendship", class: 'btn btn-danger' %>
+        <% end %>
+      <% end %>
+    </div>
+</div>

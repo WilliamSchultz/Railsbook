@@ -13,21 +13,21 @@ class StatusesControllerTest < ActionController::TestCase
 
   test "should be redirected when not logged in" do
     get :new
-    assert_response :redirect 
+    assert_response :redirect
     assert_redirected_to new_user_session_path
   end
 
   test "should render the new page when logged in" do
     sign_in users(:william)
     get :new
-    assert_response :success 
-  end 
+    assert_response :success
+  end
 
-  test "should be logged in to post a status" do 
+  test "should be logged in to post a status" do
     post :create, status: { content: "Hello" }
     assert_response :redirect
     assert_redirected_to new_user_session_path
-  end 
+  end
 
   test "should create status when logged in" do
     sign_in users(:william)
@@ -36,23 +36,19 @@ class StatusesControllerTest < ActionController::TestCase
       post :create, status: { content: @status.content }
     end
 
+    assert_equal users(:william), assigns(:status).user
     assert_redirected_to status_path(assigns(:status))
-  end
-
-    test "should create status for current user when logged in" do
-    sign_in users(:william)
-
-    assert_difference('Status.count') do
-      post :create, status: { content: @status.content, user_id: users(:jim).id }
-    end
-
-    assert_redirected_to status_path(assigns(:status))
-    assert_equal assigns(:status).user_id, users(:william).id 
   end
 
   test "should show status" do
     get :show, id: @status
     assert_response :success
+  end
+
+  test "should redirect edit when not logged in" do
+    get :edit, id: @status
+    assert_response :redirect
+    assert_redirected_to new_user_session_path
   end
 
   test "should get edit when logged in" do
@@ -61,32 +57,16 @@ class StatusesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-
-
-  test "should redirect status update when not logged in" do 
+  test "should redirect status update when not logged in" do
     put :update, id: @status, status: { content: @status.content }
-    assert_response :redirect 
+    assert_response :redirect
     assert_redirected_to new_user_session_path
-  end 
+  end
 
   test "should update status when logged in" do
     sign_in users(:william)
     put :update, id: @status, status: { content: @status.content }
     assert_redirected_to status_path(assigns(:status))
-  end
-
-  test "should update status for the current user when logged in" do
-    sign_in users(:william)
-    put :update, id: @status, status: { content: @status.content, user_id: users(:jim).id }
-    assert_redirected_to status_path(assigns(:status))
-    assert_equal assigns(:status).user_id, users(:william).id 
-  end
-
-  test "should not update the status if nothing has changed" do
-    sign_in users(:william)
-    put :update, id: @status, status: { content: @status.content, user_id: users(:jim).id }
-    assert_redirected_to status_path(assigns(:status))
-    assert_equal assigns(:status).user_id, users(:william).id 
   end
 
   test "should destroy status" do
