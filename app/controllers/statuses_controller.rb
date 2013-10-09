@@ -1,5 +1,6 @@
- class StatusesController < ApplicationController
+class StatusesController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :create, :edit, :update]
+
   # GET /statuses
   # GET /statuses.json
   def index
@@ -57,10 +58,8 @@
   # PUT /statuses/1
   # PUT /statuses/1.json
   def update
-    @status = current_user.statuses.find(params[:id])
-    if params[:status] && params[:status].has_key?(:user_id)
-      params[:status].delete(:user_id) 
-    end
+    @status = Status.find(params[:id])
+
     respond_to do |format|
       if @status.update_attributes(params[:status])
         format.html { redirect_to @status, notice: 'Status was successfully updated.' }
