@@ -25,17 +25,16 @@ class UserFriendship < ActiveRecord::Base
       friendship1 = create(user: user1, friend: user2, state: 'pending')
       friendship2 = create(user: user2, friend: user1, state: 'requested')
 
-      friendship1.send_request_email unless friendship1.new_record?
-      friendship1
+    
     end
   end
 
   def send_request_email
-    UserNotifier.friend_requested(id).deliver
+   
   end
 
   def send_acceptance_email
-    UserNotifier.friend_request_accepted(id).deliver
+    
   end
 
   def mutual_friendship
